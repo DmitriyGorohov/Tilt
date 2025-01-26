@@ -4,7 +4,7 @@ import { IconProps } from './iconsProps.ts';
 import { iconsList } from './icons/index.ts';
 
 const ROOT: ImageStyle = {
-  resizeMode: 'cover',
+  resizeMode: 'contain',
 };
 
 export const IconComponent: FC<IconProps> = ({

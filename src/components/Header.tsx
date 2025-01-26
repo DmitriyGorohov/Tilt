@@ -7,13 +7,14 @@ import Screens from '../navigation/consts/screens.ts';
 const Header = (): React.JSX.Element => (
   <View style={styles.container}>
     <TouchableOpacity onPress={() => Navigation.pop()} activeOpacity={0.8}>
-      <IconComponent style={{ width: 30, height: 30 }} icon={'menu'} />
+      <IconComponent style={{ width: 30, height: 30 }} icon={'burgerMenu'} />
     </TouchableOpacity>
+    <IconComponent style={{ width: 50, height: 50 }} icon={'logoHeader'} />
     <TouchableOpacity
       onPress={() => Navigation.navigate(Screens.BASKET)}
       activeOpacity={0.8}
     >
-      <IconComponent style={{ width: 30, height: 30 }} icon={'basket'} />
+      <IconComponent style={{ width: 30, height: 30 }} icon={'cartHeader'} />
     </TouchableOpacity>
   </View>
 );

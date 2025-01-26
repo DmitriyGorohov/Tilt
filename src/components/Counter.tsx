@@ -40,9 +40,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: Colors.redButton,
-    borderRadius: 8,
-    width: '70%',
+    backgroundColor: Colors.yellowButton,
+    borderRadius: 20,
+    width: '50%',
     padding: 6,
   },
   counterButton: {
@@ -52,14 +52,14 @@ const styles = StyleSheet.create({
     borderRadius: 8,
   },
   counterText: {
-    fontSize: 18,
-    fontWeight: '700',
-    color: Colors.white,
+    fontSize: 12,
+    fontWeight: '600',
+    color: Colors.black,
   },
   counterTextRight: {
-    fontSize: 18,
-    fontWeight: '700',
-    color: Colors.white,
+    fontSize: 12,
+    fontWeight: '600',
+    color: Colors.black,
   },
 });
 

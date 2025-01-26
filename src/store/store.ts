@@ -1,5 +1,5 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import { shopSliceReducer } from './shop/shopSliceMyBook.ts';
+import { shopSliceReducer } from './shop/shopTintSlice.ts';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { persistReducer, persistStore } from 'redux-persist';
 

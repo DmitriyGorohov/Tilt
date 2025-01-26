@@ -11,6 +11,15 @@ export const iconsList = {
   events4: require('./events-4/События1.png'),
   events5: require('./events-5/События5.png'),
   eventsBack: require('./back-enevts/back-enevts.png'),
+
+  logoTint: require('./tint/logo-tint/logo-tint.png'),
+  cartMain: require('./tint/cart_main/Group.png'),
+  logoHeader: require('./tint/logo-header/logo-header.png'),
+  burgerMenu: require('./tint/burger-menu/burger-menu.png'),
+  burgerWidget: require('./tint/burger-widget/burger-widget.png'),
+  cartHeader: require('./tint/cart-header/Group.png'),
+  qrCode: require('./tint/qr/Group.png'),
+  widget: require('./tint/widget/widget.png'),
 }
 
 export type IconTypes = keyof typeof iconsList;
