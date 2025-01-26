@@ -20,6 +20,12 @@ export const iconsList = {
   cartHeader: require('./tint/cart-header/Group.png'),
   qrCode: require('./tint/qr/Group.png'),
   widget: require('./tint/widget/widget.png'),
+
+  eventsTint1: require('./tint/events-1/События1.png'),
+  eventsTint2: require('./tint/events-2/События2.png'),
+  eventsTint3: require('./tint/events-3/События3.png'),
+  eventsTint4: require('./tint/events-4/События4.png'),
+  eventsTint5: require('./tint/events-5/События5.png'),
 }
 
 export type IconTypes = keyof typeof iconsList;
