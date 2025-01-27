@@ -15,7 +15,7 @@ const ContactTintScreen = (): React.JSX.Element => {
       <SafeAreaView style={styles.container}>
         <Header />
         <KeyboardView isScroll scrollViewStyle={{ paddingBottom: 50 }}>
-          <Text style={{ color: Colors.black, fontSize: 22, fontWeight: '700', paddingHorizontal: 16 }}>Контакты</Text>
+          <Text style={{ color: Colors.black, fontSize: 22, fontWeight: '600', paddingHorizontal: 16 }}>Контакты</Text>
           <View
             style={{
               flex: 1,
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
   },
   input: {
     color: Colors.black,
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: '400',
     paddingHorizontal: 16,
     width: '100%',

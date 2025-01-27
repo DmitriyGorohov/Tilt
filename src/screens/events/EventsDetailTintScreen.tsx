@@ -27,12 +27,12 @@ const EventsDetailTintScreen = (): React.JSX.Element => {
           top: 0,
           width: '100%',
           height: 100,
-          backgroundColor: 'red',
+          backgroundColor: Colors.yellowButton,
         }}
       >
         <IconComponent
           style={{ width: 40, height: 40, marginTop: 50, marginLeft: 20 }}
-          icon={'eventsBack'}
+          icon={'backTint'}
         />
       </TouchableOpacity>
       <IconComponent

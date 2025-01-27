@@ -8,26 +8,26 @@ const events = [
   {
     id: '1',
     league: 'UEFA',
-    dateTime: '12.06 00:45',
-    teams: ['Bayern Munich', 'Real Madrid'],
+    dateTime: '30.08  00:15',
+    teams: ['Juventus', 'Barcelona'],
   },
   {
     id: '2',
     league: 'CFL',
-    dateTime: '20.06 00:30',
-    teams: ['Hamilton Tiger-Cats', 'Montreal Alouettes'],
+    dateTime: '28.08  00:00',
+    teams: ['Calgary Stampeders', 'Ottawa Redblacks'],
   },
   {
     id: '3',
     league: 'NLL',
-    dateTime: '25.06 00:00',
-    teams: ['Colorado Mammoth', 'Calgary Roughnecks'],
+    dateTime: '25.08  00:15',
+    teams: ['Philadelphia Wings', 'New England Black Wolves'],
   },
   {
     id: '4',
-    league: 'AFL',
-    dateTime: '30.06 00:55',
-    teams: ['Adelaide Crows', 'Melbourne Demons'],
+    league: 'NBA',
+    dateTime: '12.08  00:25',
+    teams: ['Miami Heat', 'San Antonio Spurs'],
   },
 ];
 
@@ -38,9 +38,9 @@ const BroadcastTintScreen = (): React.JSX.Element => {
         <Text style={styles.leagueText}>{item.league}</Text>
       </View>
       <View style={styles.detailsContainer}>
-        <Text style={styles.dateTime}>{item.dateTime}</Text>
         <Text style={styles.teams}>{item.teams[0]}</Text>
         <Text style={styles.teams}>{item.teams[1]}</Text>
+        <Text style={styles.dateTime}>{item.dateTime}</Text>
       </View>
     </View>
   );
@@ -70,43 +70,35 @@ const styles = StyleSheet.create({
     paddingBottom: 16,
   },
   eventContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 16,
     borderRadius: 12,
     padding: 12,
   },
   leagueBadge: {
-    width: 70,
-    height: 70,
-    borderWidth: 2,
-    borderColor: Colors.yellowButton,
+    width: 100,
     borderRadius: 12,
     justifyContent: 'center',
     alignItems: 'center',
-    marginRight: 16,
   },
   leagueText: {
-    fontSize: 22,
+    alignSelf: 'flex-start',
+    fontSize: 30,
+    color: Colors.yellowButton,
     fontWeight: '900',
   },
   detailsContainer: {
     flex: 1,
   },
   dateTime: {
-    backgroundColor: Colors.yellowButton,
-    color: Colors.white,
+    color: Colors.black,
     fontSize: 14,
     fontWeight: '600',
     paddingVertical: 4,
-    paddingHorizontal: 8,
-    borderRadius: 8,
     alignSelf: 'flex-start',
-    marginBottom: 8,
+    marginTop: 8,
   },
   teams: {
     fontSize: 16,
-    fontWeight: '500',
+    fontWeight: '900',
     color: Colors.black,
   },
 });

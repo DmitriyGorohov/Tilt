@@ -7,7 +7,6 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { Screen } from '../../components/base/Screen.tsx';
 import Header from '../../components/Header.tsx';
 import Colors from '../../styles/Colors.ts';
 import {
@@ -19,21 +18,36 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import Counter from '../../components/Counter.tsx';
 import { burgers } from '../../utils/common.ts';
+import { IconComponent } from '../../components/icon/IconComponent.tsx';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const MenuTintScreen = (): React.JSX.Element => {
   const dispatch = useDispatch();
-  const { items, itemBasket } = useSelector(shopMyBookSelector);
+  const { burgers: burgersItems, itemsCart } = useSelector(shopMyBookSelector);
 
   useEffect(() => {
     dispatch(visibleBurgers(burgers));
   }, [dispatch]);
   return (
-    <Screen safeAreaEdges={['top']}>
+    <SafeAreaView edges={['top']} style={{ flex: 1, backgroundColor: Colors.white }}>
       <Header />
+      <View style={{ paddingHorizontal: 16 }}>
+        <IconComponent
+          icon={'burgerWidget'}
+          style={{
+            zIndex: 999,
+            width: '100%',
+            height: 200,
+            top: 20,
+            position: 'absolute',
+          }}
+        />
+        <IconComponent icon={'widget'} style={{ width: '100%', height: 230 }} />
+      </View>
       <FlatList
-        data={items}
-        // key={2}
-        // numColumns={2}
+        data={burgersItems}
+        key={2}
+        numColumns={2}
         contentContainerStyle={styles.flatListContent}
         showsVerticalScrollIndicator={false}
         keyExtractor={(item) => `${item.id}`}
@@ -45,18 +59,20 @@ const MenuTintScreen = (): React.JSX.Element => {
               style={styles.itemImage}
             />
             <View style={styles.itemDetailsContainer}>
-              <Text style={styles.itemTitle}>{item.name}</Text>
-              <Text style={styles.itemDescription}>{item.description}</Text>
+              <Text numberOfLines={1} style={styles.itemTitle}>
+                {item.name}
+              </Text>
+              <Text numberOfLines={1} style={styles.itemDescription}>{item.description}</Text>
               <View style={styles.itemFooter}>
                 <View style={styles.priceContainer}>
                   <Text style={styles.priceText}>{item.price} $</Text>
                 </View>
-                {itemBasket.some(
+                {itemsCart.some(
                   (basketItem) => basketItem.product.id === item.id
                 ) ? (
                   <Counter
                     quantity={
-                      itemBasket.find(
+                      itemsCart.find(
                         (basketItem) => basketItem.product.id === item.id
                       )?.quantity
                     }
@@ -78,7 +94,7 @@ const MenuTintScreen = (): React.JSX.Element => {
           </View>
         )}
       />
-    </Screen>
+    </SafeAreaView>
   );
 };
 const styles = StyleSheet.create({
@@ -117,22 +133,20 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   flatListContent: {
+    flexGrow: 1,
     paddingTop: 20,
-    paddingBottom: 200,
     paddingHorizontal: 16,
   },
   itemContainer: {
-    flex: 1,
-    borderColor: Colors.yellowButton,
-    borderWidth: 1,
-    borderRadius: 16,
+    width: '50%',
+    flex: 0.5,
     marginBottom: 16,
-    overflow: 'hidden',
-    flexDirection: 'row',
+    marginRight: 10,
   },
   itemImage: {
-    width: 140,
-    height: '100%',
+    borderRadius: 10,
+    width: '100%',
+    height: 100,
   },
   itemDetailsContainer: {
     width: '100%',
@@ -157,9 +171,6 @@ const styles = StyleSheet.create({
     marginTop: 12,
   },
   priceContainer: {
-    borderRadius: 6,
-    borderColor: Colors.yellowButton,
-    borderWidth: 1,
     padding: 6,
   },
   priceText: {
@@ -173,7 +184,7 @@ const styles = StyleSheet.create({
     padding: 6,
   },
   addButtonText: {
-    fontSize: 12,
+    fontSize: 10,
     fontWeight: '600',
     textAlign: 'center',
     color: Colors.black,

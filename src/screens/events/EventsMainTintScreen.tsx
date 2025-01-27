@@ -13,36 +13,36 @@ const EventsMainTintScreen = (): React.JSX.Element => {
   const handleSwitchIconName = (id: number): IconTypes => {
     switch (id) {
       case 1:
-        return 'events4';
+        return 'eventsTint1';
       case 2:
-        return 'events1';
+        return 'eventsTint2';
       case 3:
-        return 'events2';
+        return 'eventsTint3';
       case 4:
-        return 'events3';
+        return 'eventsTint4';
       case 5:
-        return 'events5';
+        return 'eventsTint5';
       default:
-        return 'events1';
+        return 'eventsTint1';
     }
   };
 
   return (
     <SafeAreaView edges={['top']} style={styles.container}>
-      <Header />
+      <Header isCenter={false} />
       <View style={styles.containerE}>
         <IconComponent
           style={{ width: 150, height: 150, marginBottom: 60 }}
-          icon="logo"
+          icon="logoTint"
         />
       </View>
       <View
         style={{
           marginTop: -20,
           paddingTop: 40,
-          paddingHorizontal: 16,
+          paddingHorizontal: 40,
           flex: 1,
-          backgroundColor: Colors.yellowButton,
+          backgroundColor: Colors.background,
         }}
       >
         {tintEventsList.map((item) => (
@@ -57,7 +57,7 @@ const EventsMainTintScreen = (): React.JSX.Element => {
             style={styles.item}
           >
             <Text
-              style={{ color: Colors.white, fontSize: 18, fontWeight: '800' }}
+              style={{ color: Colors.black, fontSize: 22, fontWeight: '600' }}
             >
               {item.value}
             </Text>
@@ -68,7 +68,7 @@ const EventsMainTintScreen = (): React.JSX.Element => {
           activeOpacity={0.8}
           style={{ alignSelf: 'center', marginTop: 30 }}
         >
-          <IconComponent style={{ width: 50, height: 50 }} icon="basket_menu" />
+          <IconComponent style={{ width: 50, height: 50 }} icon="cartMain" />
         </TouchableOpacity>
       </View>
     </SafeAreaView>
@@ -82,20 +82,16 @@ const styles = StyleSheet.create({
   containerE: {
     zIndex: 999,
     backgroundColor: Colors.white,
-    height: 150,
+    height: 100,
     alignItems: 'center',
     justifyContent: 'center',
-    borderBottomLeftRadius: 16,
-    borderBottomRightRadius: 16,
   },
   item: {
-    borderWidth: 1,
-    marginBottom: 10,
-    borderColor: Colors.white,
-    borderRadius: 12,
+    marginBottom: 24,
+    backgroundColor: Colors.white,
     alignItems: 'center',
     justifyContent: 'center',
-    paddingVertical: 14,
+    paddingVertical: 20,
   },
 });
 export default EventsMainTintScreen;

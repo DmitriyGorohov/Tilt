@@ -6,22 +6,14 @@ export const shopMyBookSelector = (state: RootState): ShopState => state.shop;
 
 export interface ShopState {
     totalCount: number;
-    itemBasket: { product: Burger; quantity: number }[];
-    itemFavorites: { product: Burger; quantity: number }[];
-    items: Burger[];
-    events: any;
-    enabledApi: boolean | null;
-    path: string;
+    itemsCart: { product: Burger; quantity: number }[];
+    burgers: Burger[];
 }
 
 const initialState: ShopState = {
     totalCount: 0,
-    itemBasket: [],
-    itemFavorites: [],
-    items: [],
-    events: [],
-    enabledApi: null,
-    path: '',
+    itemsCart: [],
+    burgers: [],
 };
 
 const shopTintSlice = createSlice({
@@ -29,11 +21,11 @@ const shopTintSlice = createSlice({
     initialState,
     reducers: {
         resetProductToCart: (state) => {
-            state.itemBasket = [];
+            state.itemsCart = [];
             state.totalCount = 0;
         },
         addProductToCart: (state, action: PayloadAction<Burger>) => {
-            const existingProduct = state.itemBasket.find(
+            const existingProduct = state.itemsCart.find(
                 (item) => item.product.id === action.payload.id
             );
 
@@ -42,14 +34,14 @@ const shopTintSlice = createSlice({
                 existingProduct.quantity += 1;
             } else {
                 // Если продукта нет в корзине, добавляем его
-                state.itemBasket.push({ product: action.payload, quantity: 1 });
+                state.itemsCart.push({ product: action.payload, quantity: 1 });
             }
 
             // Пересчитываем общую сумму
             state.totalCount += action.payload.price;
         },
         decreaseProductQuantityTint: (state, action: PayloadAction<number>) => {
-            const product = state.itemBasket.find(
+            const product = state.itemsCart.find(
                 (item) => item.product.id === action.payload
             );
 
@@ -59,14 +51,14 @@ const shopTintSlice = createSlice({
 
                 // Если количество продукта достигает 0, удаляем его
                 if (product.quantity <= 0) {
-                    state.itemBasket = state.itemBasket.filter(
+                    state.itemsCart = state.itemsCart.filter(
                         (item) => item.product.id !== action.payload
                     );
                 }
             }
         },
         visibleBurgers: (state, action: PayloadAction<Burger[]>) => {
-            state.items = action.payload;
+            state.burgers = action.payload;
         },
     },
 });

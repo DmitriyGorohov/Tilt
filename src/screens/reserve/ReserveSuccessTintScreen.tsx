@@ -1,7 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Colors from '../../styles/Colors.ts';
-import { IconComponent } from '../../components/icon/IconComponent.tsx';
 import Navigation from '../../navigation/navigation.ts';
 import Screens from '../../navigation/consts/screens.ts';
 
@@ -10,42 +9,37 @@ const ReserveSuccessTintScreen = (): React.JSX.Element => {
     <View style={styles.container}>
       <Text
         style={{
-          color: Colors.white,
+          color: Colors.black,
           fontSize: 24,
           marginBottom: 40,
-          fontWeight: '800',
+          fontWeight: '600',
           textAlign: 'center',
           paddingVertical: 20,
           borderRadius: 20,
           width: '100%',
-          backgroundColor: Colors.yellowButton,
         }}
       >
-        СТОЛИК ЗАРЕЗЕРВИРОВАН!
+        {'СТОЛИК\nЗАРЕЗЕРВИРОВАН!'}
       </Text>
-      <IconComponent
-        style={{ width: 200, height: 200 }}
-        icon={'reserve_success'}
-      />
       <TouchableOpacity
         activeOpacity={0.8}
         onPress={() => Navigation.navigate(Screens.MAIN_APP)}
         style={{
           backgroundColor: Colors.yellowButton,
-          borderRadius: 12,
+          borderRadius: 20,
           alignItems: 'center',
           justifyContent: 'center',
           position: 'absolute',
           bottom: 40,
           width: '100%',
-          paddingVertical: 12,
+          paddingVertical: 10,
         }}
       >
         <Text
           style={{
             fontSize: 20,
-            color: Colors.white,
-            fontWeight: '800',
+            color: Colors.black,
+            fontWeight: '600',
           }}
         >
           НА ГЛАВНУЮ

@@ -19,7 +19,7 @@ const CartTintSuccessScreen: FC<
       <Text style={{ textAlign: 'center', fontSize: 30, fontWeight: '900', marginBottom: 40 }}>
         {'Благодарим\nза заказ!'}
       </Text>
-      <IconComponent icon='qr' style={{ width: 200, height: 200 }} />
+      <IconComponent icon='qrCode' style={{ width: 200, height: 200 }} />
       <View
         style={{
           position: 'absolute',
@@ -39,14 +39,14 @@ const CartTintSuccessScreen: FC<
           }}
           activeOpacity={0.8}
           style={{
-            borderRadius: 12,
+            borderRadius: 20,
             backgroundColor: Colors.yellowButton,
-            paddingVertical: 12,
+            paddingVertical: 10,
             alignItems: 'center',
             justifyContent: 'center',
           }}
         >
-          <Text style={{ color: Colors.white, fontSize: 26, fontWeight: '900' }}>
+          <Text style={{ color: Colors.black, fontSize: 18, fontWeight: '700' }}>
             НА ГЛАВНУЮ
           </Text>
         </TouchableOpacity>

@@ -26,6 +26,7 @@ export const iconsList = {
   eventsTint3: require('./tint/events-3/События3.png'),
   eventsTint4: require('./tint/events-4/События4.png'),
   eventsTint5: require('./tint/events-5/События5.png'),
+  backTint: require('./tint/backTint/Vector.png'),
 }
 
 export type IconTypes = keyof typeof iconsList;

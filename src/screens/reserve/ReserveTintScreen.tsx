@@ -25,7 +25,7 @@ const ReserveTintScreen = (): React.JSX.Element => {
     <SafeAreaView style={styles.container}>
       <Header />
       <KeyboardView isScroll scrollViewStyle={{ paddingBottom: 50 }}>
-        <Text style={{ color: Colors.black, fontSize: 22, fontWeight: '700', paddingHorizontal: 16 }}>Реезрв столика</Text>
+        <Text style={{ color: Colors.black, fontSize: 22, fontWeight: '500', paddingHorizontal: 16 }}>Реезрв столика</Text>
         <View
           style={{
             flex: 1,
@@ -90,9 +90,9 @@ const ReserveTintScreen = (): React.JSX.Element => {
               }
         }
         style={{
-          borderRadius: 12,
+          borderRadius: 30,
           backgroundColor: Colors.yellowButton,
-          paddingVertical: 12,
+          paddingVertical: 10,
           alignItems: 'center',
           justifyContent: 'center',
           alignSelf: 'center',
@@ -104,10 +104,10 @@ const ReserveTintScreen = (): React.JSX.Element => {
       >
         <Text
           style={{
-            color: Colors.white,
+            color: Colors.black,
             fontSize: 16,
             textTransform: 'uppercase',
-            fontWeight: '900',
+            fontWeight: '600',
           }}
         >
           Зарезервировать
@@ -135,13 +135,13 @@ const styles = StyleSheet.create({
   },
   input: {
     color: Colors.black,
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: '400',
     paddingHorizontal: 16,
     width: '100%',
-    height: 50,
-    backgroundColor: Colors.pink,
-    borderRadius: 30,
+    height: 40,
+    borderBottomWidth: 1,
+    borderBottomColor: Colors.black,
   },
 });
 export default ReserveTintScreen;

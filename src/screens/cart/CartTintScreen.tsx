@@ -1,4 +1,4 @@
-import React, { type FC } from 'react';
+import React from 'react';
 import {
   FlatList,
   Image,
@@ -20,40 +20,33 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import Navigation from '../../navigation/navigation.ts';
 import Screens from '../../navigation/consts/screens.ts';
 
-interface BasketScreenProps {}
-
-const CartTintScreen: FC<BasketScreenProps> = (): React.JSX.Element => {
+const CartTintScreen = (): React.JSX.Element => {
   const dispatch = useDispatch();
-  const { itemBasket, totalCount } = useSelector(shopMyBookSelector);
+  const { itemsCart, totalCount } = useSelector(shopMyBookSelector);
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: Colors.white }}>
       <Header />
       <FlatList
-        data={itemBasket}
+        data={itemsCart}
         contentContainerStyle={styles.flatListContent}
         showsVerticalScrollIndicator={false}
+        keyExtractor={(item) => `${item.product.id}`}
         ListEmptyComponent={
           <View
             style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
           >
             <Text
-              style={{ color: Colors.black, fontSize: 28, fontWeight: '700' }}
+              style={{ color: Colors.black, fontSize: 24, fontWeight: '800' }}
             >
               В КОРЗИНЕ ПУСТО...
             </Text>
-            <Image
-              style={{ width: 200, height: 200, marginTop: 100 }}
-              source={require('../../assets/basket-empty/basket-empty.png')}
-              resizeMode="cover"
-            />
           </View>
         }
-        keyExtractor={(item) => `${item.product.id}`}
         renderItem={({ item }) => (
           <View style={styles.itemContainer}>
             <Image
-              source={item.product.image}
+              source={item.product.images}
               resizeMode="cover"
               style={styles.itemImage}
             />
@@ -66,37 +59,23 @@ const CartTintScreen: FC<BasketScreenProps> = (): React.JSX.Element => {
                 <View style={styles.priceContainer}>
                   <Text style={styles.priceText}>{item.product.price} $</Text>
                 </View>
-                {itemBasket.some(
-                  (basketItem) => basketItem.product.id === item.product.id
-                ) ? (
-                  <Counter
-                    quantity={
-                      itemBasket.find(
-                        (basketItem) =>
-                          basketItem.product.id === item.product.id
-                      )?.quantity
-                    }
-                    onIncrement={() =>
-                      dispatch(addProductToCart(item.product))
-                    }
-                    onDecrement={() =>
-                      dispatch(decreaseProductQuantityTint(item.product.id))
-                    }
-                  />
-                ) : (
-                  <TouchableOpacity
-                    onPress={() => dispatch(addProductToCart(item.product))}
-                    style={styles.addButton}
-                  >
-                    <Text style={styles.addButtonText}>В КОРЗИНУ</Text>
-                  </TouchableOpacity>
-                )}
+                <Counter
+                  quantity={
+                    itemsCart.find(
+                      (basketItem) => basketItem.product.id === item.product.id
+                    )?.quantity
+                  }
+                  onIncrement={() => dispatch(addProductToCart(item.product))}
+                  onDecrement={() =>
+                    dispatch(decreaseProductQuantityTint(item.product.id))
+                  }
+                />
               </View>
             </View>
           </View>
         )}
       />
-      {itemBasket.length !== 0 && (
+      {itemsCart.length !== 0 && (
         <Text
           style={{
             paddingHorizontal: 16,
@@ -105,7 +84,7 @@ const CartTintScreen: FC<BasketScreenProps> = (): React.JSX.Element => {
             fontWeight: '700',
           }}
         >
-          Сума к оплате: {totalCount} $
+          К оплате: {totalCount} $
         </Text>
       )}
       <View
@@ -121,7 +100,7 @@ const CartTintScreen: FC<BasketScreenProps> = (): React.JSX.Element => {
       >
         <TouchableOpacity
           onPress={() => {
-            if (itemBasket.length === 0) {
+            if (itemsCart.length === 0) {
               Navigation.navigate(Screens.MAIN_APP);
             } else {
               Navigation.navigate(Screens.BASKET_SUCCESS);
@@ -129,17 +108,17 @@ const CartTintScreen: FC<BasketScreenProps> = (): React.JSX.Element => {
           }}
           activeOpacity={0.8}
           style={{
-            borderRadius: 12,
+            borderRadius: 20,
             backgroundColor: Colors.yellowButton,
-            paddingVertical: 12,
+            paddingVertical: 10,
             alignItems: 'center',
             justifyContent: 'center',
           }}
         >
           <Text
-            style={{ color: Colors.white, fontSize: 26, fontWeight: '900' }}
+            style={{ color: Colors.black, fontSize: 18, fontWeight: '600' }}
           >
-            {itemBasket.length === 0 ? 'НА ГЛАВНУЮ' : 'ЗАКАЗАТЬ'}
+            {itemsCart.length === 0 ? 'НА ГЛАВНУЮ' : 'ЗАКАЗАТЬ'}
           </Text>
         </TouchableOpacity>
       </View>
@@ -153,7 +132,6 @@ const styles = StyleSheet.create({
   flatListContent: {
     paddingTop: 20,
     flexGrow: 1,
-    // paddingBottom: 70,
     paddingHorizontal: 16,
   },
   itemContainer: {
@@ -167,7 +145,7 @@ const styles = StyleSheet.create({
   },
   itemImage: {
     width: 140,
-    height: '100%',
+    height: 120,
   },
   itemDetailsContainer: {
     width: '100%',
@@ -184,6 +162,7 @@ const styles = StyleSheet.create({
     color: 'gray',
     fontSize: 8,
     marginBottom: 4,
+    flex: 1,
   },
   itemFooter: {
     flexDirection: 'row',
@@ -192,9 +171,6 @@ const styles = StyleSheet.create({
     marginTop: 12,
   },
   priceContainer: {
-    borderRadius: 6,
-    borderColor: Colors.yellowButton,
-    borderWidth: 1,
     padding: 6,
   },
   priceText: {
@@ -208,7 +184,7 @@ const styles = StyleSheet.create({
     padding: 6,
   },
   addButtonText: {
-    fontSize: 18,
+    fontSize: 12,
     fontWeight: '800',
     textAlign: 'center',
     color: Colors.white,
